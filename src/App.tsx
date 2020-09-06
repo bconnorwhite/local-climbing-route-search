@@ -80,7 +80,7 @@ function App() {
     <div className="App">
       <div className="py-4">
         {currentLocation ?
-         `These routes are close to ${currentLocation.lat}, ${currentLocation.lon} !` :
+         `Your location: ${currentLocation.lat}, ${currentLocation.lon}` :
           'Finding your location...'}
       </div>
       <CriteriaBar 
@@ -94,14 +94,14 @@ function App() {
         numProblems={numProblems}
         setNumProblems={setNumProblems}
       />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 m-4">
         {closeRoutes.map(route => {
           const validImgPath = route.imgMedium.length > 0 ? route.imgMedium : route.imgSmallMed.length > 0 ? route.imgSmallMed : route.imgSmall.length > 0 ? route.imgSmall : route.imgSqSmall.length > 0 ? route.imgSqSmall : null
 
           return (
             <div className="text-blue-500 border border-gray-300">
               <div className="h-40 overflow-hidden flex items-center justify-center bg-gray-200 border border-gray-100">
-                {validImgPath ? <img src={validImgPath} alt="Climbing Route"/> : 'No image :('}
+                <img src={validImgPath ? validImgPath : "zion.jpg"} alt="Climbing Route"/>
               </div>
               {`${route.name} - ${route.location[2]}`}
               <div className="flex justify-evenly">
